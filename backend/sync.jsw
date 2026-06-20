@@ -1,0 +1,21 @@
+/*
+ * FB Page Sync for Wix (Velo) — manual trigger.
+ *
+ * Exposes a function the frontend can call (e.g. from an admin button) to run a
+ * sync immediately, without waiting for the hourly scheduled job. Useful for
+ * testing and for an on-demand "Sync now" button.
+ *
+ * Place this file in the Velo  Backend  section (.jsw = callable from the frontend).
+ */
+
+import { syncFacebookPosts } from 'backend/facebookSync.js';
+
+/**
+ * Run a sync right now. Returns the same summary as the scheduled job.
+ *
+ * NOTE: this is callable by site visitors. Put any button that calls it on a
+ * members-only / password-protected page, or add your own auth check here.
+ */
+export async function runSyncNow() {
+	return syncFacebookPosts();
+}
